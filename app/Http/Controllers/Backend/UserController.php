@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-use function Pest\Laravel\json;
 
 class UserController extends Controller
 {
@@ -37,7 +36,11 @@ class UserController extends Controller
         $data->password = bcrypt($request->password);
         $data->save();
 
-        return redirect()->route('user.view');
+        $notification = array(
+            'message' => 'User integrated Successfully',
+            'alert-type' => 'success'
+        );
 
+        return redirect()->route('user.view')->with($notification);
     }
 }
