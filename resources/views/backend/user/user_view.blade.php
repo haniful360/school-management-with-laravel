@@ -14,7 +14,7 @@
                         <div class="box">
                             <div class="box-header with-border d-flex justify-content-between">
                                 <h3 class="box-title">User List</h3>
-                                <a href="{{route('users.add')}}" class="btn btn-success btn-rounded">Add User</a>
+                                <a href="{{ route('users.add') }}" class="btn btn-success btn-rounded">Add User</a>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
@@ -33,11 +33,12 @@
                                             @foreach ($allData as $key => $user)
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
-                                                    <td>{{$user->usertype}}</td>
-                                                    <td>{{$user->name}}</td>
-                                                    <td>{{$user->email}}</td>
+                                                    <td>{{ $user->usertype }}</td>
+                                                    <td>{{ $user->name }}</td>
+                                                    <td>{{ $user->email }}</td>
                                                     <td>
-                                                        <a href="#" class="btn btn-info btn-rounded">Edit</a>
+                                                        <a href="{{ route('user.edit', $user->id) }}"
+                                                            class="btn btn-info btn-rounded">Edit</a>
                                                         <a href="#" class="btn btn-danger btn-rounded">Delete</a>
                                                     </td>
 
