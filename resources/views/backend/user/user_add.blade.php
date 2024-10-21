@@ -2,32 +2,13 @@
 @section('admin')
     <div class="content-wrapper">
         <div class="container-full">
-            <!-- Content Header (Page header) -->
-            <div class="content-header">
-                <div class="d-flex align-items-center">
-                    <div class="mr-auto">
-                        <h3 class="page-title">Form Validation</h3>
-                        <div class="d-inline-block align-items-center">
-                            <nav>
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#"><i class="mdi mdi-home-outline"></i></a>
-                                    </li>
-                                    <li class="breadcrumb-item" aria-current="page">Forms</li>
-                                    <li class="breadcrumb-item active" aria-current="page">Form Validation</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Main content -->
             <section class="content">
 
                 <!-- Basic Forms -->
                 <div class="box">
                     <div class="box-header with-border">
-                        <h4 class="box-title">Form Validation</h4>
+                        <h4 class="box-title">Add User</h4>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -95,7 +76,7 @@
                                                 </div>
                                             </div>
                                             <div class="text-xs-right">
-                                                <input type="submit" class="btn btn-rounded btn-info" value="submit"/>
+                                                <input type="submit" class="btn btn-rounded btn-info my-1 ml-3" value="submit"/>
                                             </div>
                                         </div>
 
