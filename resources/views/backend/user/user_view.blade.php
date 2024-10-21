@@ -14,7 +14,7 @@
                         <div class="box">
                             <div class="box-header with-border d-flex justify-content-between">
                                 <h3 class="box-title">User List</h3>
-                                <a href="" class="btn btn-success btn-rounded">Add User</a>
+                                <a href="{{route('users.add')}}" class="btn btn-success btn-rounded">Add User</a>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
@@ -22,29 +22,29 @@
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>SL</th>
+                                                <th width='5%'>SL</th>
                                                 <th>Role</th>
                                                 <th>Name</th>
                                                 <th>Email</th>
-                                                <th>Action</th>
+                                                <th width='25%'>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($allData as $key => $user)
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
-                                                    <td>Role</td>
+                                                    <td>{{$user->usertype}}</td>
                                                     <td>{{$user->name}}</td>
                                                     <td>{{$user->email}}</td>
                                                     <td>
-                                                        <a href="" class="btn btn-success btn-rounded">Edit</a>
-                                                        <a href="" class="btn btn-danger btn-rounded">Delete</a>
+                                                        <a href="#" class="btn btn-info btn-rounded">Edit</a>
+                                                        <a href="#" class="btn btn-danger btn-rounded">Delete</a>
                                                     </td>
 
                                                 </tr>
                                             @endforeach
                                         </tbody>
-                                        <tfoot>
+                                        {{-- <tfoot>
                                             <tr>
                                                 <th>Name</th>
                                                 <th>Position</th>
@@ -53,7 +53,7 @@
                                                 <th>Start date</th>
                                                 <th>Salary</th>
                                             </tr>
-                                        </tfoot>
+                                        </tfoot> --}}
                                     </table>
                                 </div>
                             </div>
