@@ -39,23 +39,21 @@
                                                     <td>
                                                         <a href="{{ route('users.edit', $user->id) }}"
                                                             class="btn btn-info btn-rounded">Edit</a>
-                                                        <a href="{{ route('users.delete', $user->id) }}"
+                                                        <a href="javascript:void(0)"
+                                                            onclick="deleteUser({{ $user->id }})"
                                                             class="btn btn-danger btn-rounded">Delete</a>
+                                                        <form id="delete-{{ $user->id }}"
+                                                            action="{{ route('users.delete', $user->id) }}" method="POST"
+                                                            style="display: none;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
                                                     </td>
 
                                                 </tr>
                                             @endforeach
                                         </tbody>
-                                        {{-- <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
-                                            </tr>
-                                        </tfoot> --}}
+
                                     </table>
                                 </div>
                             </div>
@@ -71,4 +69,27 @@
 
         </div>
     </div>
+
+    <script type="text/javascript">
+        function deleteUser(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-' + id).submit();
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "User has been deleted.",
+                        icon: "success"
+                    });
+                }
+            })
+        }
+    </script>
 @endsection
