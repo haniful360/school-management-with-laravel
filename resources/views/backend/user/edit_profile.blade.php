@@ -106,7 +106,7 @@
                                                         </div>
                                                         <div>
                                                             <img id="profile_image" alt="your image" width="100"
-                                                                height="100" src="{{ url('upload/no_image.jpg') }}"
+                                                                height="100" src="{{ !empty(Auth::user()->image) ? Storage::url(Auth::user()->image) : url('upload/no_image.jpg') }}"
                                                                 style="width: 100px;height: 100px;border: 1px solid #000000"
                                                                 alt="User Avatar">
                                                         </div>
@@ -135,21 +135,4 @@
             <!-- /.content -->
         </div>
     </div>
-    {{-- <script type="text/javascript">
-        function previewImage(event) {
-            var image = document.getElementById('image');
-            var imagePreview = document.getElementById('imagePreview');
-
-            // Get the selected file
-            var file = image.files[0];
-
-            if (file) {
-                imagePreview.src = URL.createObjectURL(file);
-                imagePreview.style.display = 'block';
-            } else {
-                // Hide the preview if no file is selected
-                imagePreview.style.display = 'none';
-            }
-        }
-    </script> --}}
 @endsection

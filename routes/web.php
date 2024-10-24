@@ -38,6 +38,8 @@ Route::prefix('profile')->group(function () {
     Route::get('/view', [ProfileController::class, 'index'])->name('profile.view');
     Route::get('/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/store', [ProfileController::class, 'store'])->name('profile.store');
+    Route::get('/password/view', [ProfileController::class, 'viewPassword'])->name('password.view');
+    Route::post('/password/update', [ProfileController::class, 'updatePassword'])->name('update.password');
 
 });
 
