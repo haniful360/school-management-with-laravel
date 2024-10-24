@@ -46,7 +46,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('profiles.index')}}"><i class="ti-more"></i>Your Profile</a></li>
+                    <li><a href="{{route('profile.view')}}"><i class="ti-more"></i>Your Profile</a></li>
                     <li><a href="mailbox_compose.html"><i class="ti-more"></i>Compose</a></li>
                     <li><a href="mailbox_read_mail.html"><i class="ti-more"></i>Read</a></li>
                 </ul>
