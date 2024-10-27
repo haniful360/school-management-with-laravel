@@ -33,13 +33,13 @@
                                                     <td>{{ $key + 1 }}</td>
                                                     <td>{{ $student->name }}</td>
                                                     <td>
-                                                        <a href=""
+                                                        <a href="{{ route('student.edit', $student->id) }}"
                                                             class="btn btn-info btn-rounded">Edit</a>
                                                         <a href="javascript:void(0)"
-                                                            onclick="deletestudent({{ $student->id }})"
+                                                            onclick="deleteStudentClass({{ $student->id }})"
                                                             class="btn btn-danger btn-rounded">Delete</a>
                                                         <form id="delete-{{ $student->id }}"
-                                                            action=""
+                                                            action="{{ route('student.delete', $student->id) }}"
                                                             method="POST" style="display: none;">
                                                             @csrf
                                                             @method('DELETE')
@@ -66,8 +66,8 @@
         </div>
     </div>
 
-    {{-- <script type="text/javascript">
-        function deleteUser(id) {
+    <script type="text/javascript">
+        function deleteStudentClass(id) {
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -87,5 +87,5 @@
                 }
             })
         }
-    </script> --}}
+    </script>
 @endsection

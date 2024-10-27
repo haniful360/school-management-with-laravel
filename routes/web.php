@@ -48,4 +48,7 @@ Route::prefix('setups')->group(function () {
     Route::get('student/class/view', [StudentClassController::class, 'viewStudent'])->name('studentClass.view');
     Route::get('student/class/add', [StudentClassController::class, 'addStudentClass'])->name('student.add');
     Route::post('student/class/store', [StudentClassController::class, 'storeStudentClass'])->name('student.store');
+    Route::get('student/class/edit/{id}', [StudentClassController::class, 'editStudentClass'])->name('student.edit');
+    Route::post('student/class/update/{id}', [StudentClassController::class, 'updateStudentClass'])->name('student.update');
+    Route::delete('student/class/delete/{id}', [StudentClassController::class, 'deleteStudentClass'])->name('student.delete');
 });
