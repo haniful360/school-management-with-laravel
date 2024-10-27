@@ -14,7 +14,7 @@
                         <div class="box">
                             <div class="box-header with-border d-flex justify-content-between">
                                 <h3 class="box-title">Student Class List</h3>
-                                <a href="{{ route('users.add') }}" class="btn btn-success btn-rounded">Add Student Class</a>
+                                <a href="{{ route('student.add') }}" class="btn btn-success btn-rounded">Add Student Class</a>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
@@ -33,13 +33,13 @@
                                                     <td>{{ $key + 1 }}</td>
                                                     <td>{{ $student->name }}</td>
                                                     <td>
-                                                        <a href="{{ route('students.edit', $student->id) }}"
+                                                        <a href=""
                                                             class="btn btn-info btn-rounded">Edit</a>
                                                         <a href="javascript:void(0)"
                                                             onclick="deletestudent({{ $student->id }})"
                                                             class="btn btn-danger btn-rounded">Delete</a>
                                                         <form id="delete-{{ $student->id }}"
-                                                            action="{{ route('students.delete', $student->id) }}"
+                                                            action=""
                                                             method="POST" style="display: none;">
                                                             @csrf
                                                             @method('DELETE')
