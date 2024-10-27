@@ -34,13 +34,12 @@
                                                     <td>{{ $key + 1 }}</td>
                                                     <td>{{ $shift->name }}</td>
                                                     <td>
-                                                        <a href=""
+                                                        <a href="{{ route('shift.edit', $shift->id) }}"
                                                             class="btn btn-info btn-rounded">Edit</a>
                                                         <a href="javascript:void(0)"
-                                                            onclick="deleteStudentshift({{ $shift->id }})"
+                                                            onclick="deleteStudentShift({{ $shift->id }})"
                                                             class="btn btn-danger btn-rounded">Delete</a>
-                                                        <form id="delete-{{ $shift->id }}"
-                                                            action="" method="POST"
+                                                        <form id="delete-{{ $shift->id }}" action="{{ route('shift.destroy', $shift->id) }}" method="POST"
                                                             style="display: none;">
                                                             @csrf
                                                             @method('DELETE')
@@ -68,7 +67,7 @@
     </div>
 
     <script type="text/javascript">
-        function deleteStudentGroup(id) {
+        function deleteStudentShift(id) {
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",

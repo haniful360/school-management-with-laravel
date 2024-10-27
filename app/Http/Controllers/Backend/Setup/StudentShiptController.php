@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StudentShiftReq;
 use App\Models\StudentShift;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentShiptController extends Controller
 {
@@ -14,9 +15,8 @@ class StudentShiptController extends Controller
      */
     public function index()
     {
-        $data['allData'] = StudentShift::all();
+        $data['allData'] = DB::table('student_shifts')->get();
         return view('backend.setup.shift.view_shift', $data);
-        // return view('backend.setup.shift.view_shift')->with('allData', $allData);
     }
 
     /**
@@ -48,15 +48,25 @@ class StudentShiptController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $editStudentShift = DB::table('student_shifts')->where('id', $id)->first();
+        return view('backend.setup.shift.edit_shift', compact('editStudentShift'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StudentShiftReq $request, string $id)
     {
-        //
+        DB::table('student_shifts')->where('id', $id)->update([
+            'name' => $request->input('name')
+        ]);
+
+        $notification = array(
+            'message' => 'Student Shift Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('shift.index')->with($notification);
     }
 
     /**
@@ -64,6 +74,14 @@ class StudentShiptController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = DB::table('student_shifts')->where('id', $id);
+        $data->delete();
+
+        $notification = array(
+            'message' => 'Student Group Deleted Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->route('shift.index')->with($notification);
     }
 }
