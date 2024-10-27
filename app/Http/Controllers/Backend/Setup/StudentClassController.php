@@ -23,7 +23,7 @@ class StudentClassController extends Controller
     public function storeStudentClass(Request $request)
     {
 
-        $validateData = $request->validate([
+        $request->validate([
             'name' => 'required|unique:student_classes,name'
         ]);
 
@@ -50,7 +50,7 @@ class StudentClassController extends Controller
     {
         $data = StudentClass::findOrFail($id);
 
-        $validateData = $request->validate([
+        $request->validate([
             'name' => 'required|unique:student_classes,name,' . $data->id,
         ]);
 

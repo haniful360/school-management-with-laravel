@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Setup;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StudentShiftReq;
 use App\Models\StudentShift;
 use Illuminate\Http\Request;
 
@@ -23,24 +24,24 @@ class StudentShiptController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.setup.shift.add_shift');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StudentShiftReq $request)
     {
-        //
+        StudentShift::create($request->only('name'));
+
+        $notification = array(
+            'message' => 'Student Shift Insert Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('shift.index')->with($notification);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
