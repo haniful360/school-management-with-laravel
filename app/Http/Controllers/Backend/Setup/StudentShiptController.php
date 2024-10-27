@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Setup;
 
 use App\Http\Controllers\Controller;
+use App\Models\StudentShift;
 use Illuminate\Http\Request;
 
 class StudentShiptController extends Controller
@@ -12,7 +13,9 @@ class StudentShiptController extends Controller
      */
     public function index()
     {
-        //
+        $data['allData'] = StudentShift::all();
+        return view('backend.setup.shift.view_shift', $data);
+        // return view('backend.setup.shift.view_shift')->with('allData', $allData);
     }
 
     /**
