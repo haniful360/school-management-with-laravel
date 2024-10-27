@@ -24,7 +24,7 @@ class StudentClassController extends Controller
     {
 
         $validateData = $request->validate([
-            'name' => 'required|unique:student_classes'
+            'name' => 'required|unique:student_classes,name'
         ]);
 
         $data = new StudentClass();
@@ -48,8 +48,13 @@ class StudentClassController extends Controller
 
     public function  updateStudentClass(Request $request, $id)
     {
-
         $data = StudentClass::findOrFail($id);
+
+        $validateData = $request->validate([
+            'name' => 'required|unique:student_classes,name,' . $data->id,
+        ]);
+
+
         $data->name = $request->name;
         $data->save();
 
