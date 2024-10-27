@@ -34,11 +34,13 @@
                                                     <td>{{ $key + 1 }}</td>
                                                     <td>{{ $group->name }}</td>
                                                     <td>
-                                                        <a href="" class="btn btn-info btn-rounded">Edit</a>
+                                                        <a href="{{ route('group.edit', $group->id) }}"
+                                                            class="btn btn-info btn-rounded">Edit</a>
                                                         <a href="javascript:void(0)"
-                                                            onclick="deleteStudentClass({{ $group->id }})"
+                                                            onclick="deleteStudentGroup({{ $group->id }})"
                                                             class="btn btn-danger btn-rounded">Delete</a>
-                                                        <form id="delete-{{ $group->id }}" action="" method="POST"
+                                                        <form id="delete-{{ $group->id }}"
+                                                            action="{{ route('group.destroy', $group->id) }}" method="POST"
                                                             style="display: none;">
                                                             @csrf
                                                             @method('DELETE')
@@ -66,7 +68,7 @@
     </div>
 
     <script type="text/javascript">
-        function deleteStudentClass(id) {
+        function deleteStudentGroup(id) {
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",

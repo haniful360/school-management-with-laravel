@@ -43,28 +43,31 @@ class StudentGroupController extends Controller
         return redirect()->route('group.index')->with($notification);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $editStudentGroup = StudentGroup::findOrFail($id);
+        return view('backend.setup.group.edit_group', compact('editStudentGroup'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StudentGroupReq $request, string $id)
     {
-        //
+        $data = StudentGroup::findOrFail($id);
+        $data->name = $request->input('name');
+        $data->save();
+
+        $notification = array(
+            'message' => 'Student Group Updated Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->route('group.index')->with($notification);
     }
 
     /**
@@ -72,6 +75,14 @@ class StudentGroupController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = StudentGroup::findOrFail($id);
+        $data->delete();
+
+        $notification = array(
+            'message' => 'Student Group Deleted Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->route('group.index')->with($notification);
     }
 }
