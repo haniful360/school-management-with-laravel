@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\Backend\Setup\StudentClassController;
 use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,11 +41,10 @@ Route::prefix('profile')->group(function () {
     Route::post('/store', [ProfileController::class, 'store'])->name('profile.store');
     Route::get('/password/view', [ProfileController::class, 'viewPassword'])->name('password.view');
     Route::post('/password/update', [ProfileController::class, 'updatePassword'])->name('update.password');
-
 });
 
 
-
-
-
-
+Route::prefix('setups')->group(function () {
+    Route::get('student/class/view', [StudentClassController::class, 'viewStudent'])->name('studentClass.view');
+    Route::post('student/class/add', [StudentClassController::class, 'addStudentClass'])->name('student.store');
+});

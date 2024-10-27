@@ -57,6 +57,19 @@
 
                 </ul>
             </li>
+            <li class="treeview {{ $prefix == 'setups' ? 'active' : '' }}">
+                <a href="#">
+                    <i data-feather="mail"></i> <span>Student Management</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('studentClass.view') }}"><i class="ti-more"></i>Student Class</a></li>
+                    <li><a href=""><i class="ti-more"></i>Student Group</a></li>
+
+                </ul>
+            </li>
 
             <li class="header nav-small-cap">User Interface</li>
 
