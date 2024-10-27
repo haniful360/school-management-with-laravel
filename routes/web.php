@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\Setup\StudentClassController;
+use App\Http\Controllers\Backend\Setup\StudentGroupController;
 use App\Http\Controllers\Backend\Setup\StudentYearController;
 use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
@@ -55,4 +56,5 @@ Route::prefix('setups')->group(function () {
 
     // for years route
     Route::resource('year', StudentYearController::class)->except('show');
+    Route::resource('group', StudentGroupController::class)->except('show');
 });
