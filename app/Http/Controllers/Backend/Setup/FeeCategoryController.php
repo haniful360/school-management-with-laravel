@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Setup;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FeeCategoryReq;
 use App\Models\FeeCategory;
 use Illuminate\Http\Request;
 
@@ -22,24 +23,26 @@ class FeeCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.setup.fee_category.add_category');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(FeeCategoryReq $request)
     {
-        //
+        $data = new FeeCategory();
+        $data->name = $request->input('name');
+        $data->save();
+
+        $notification = array(
+            'message' => 'Student Category Insert Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('category.index')->with($notification);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.

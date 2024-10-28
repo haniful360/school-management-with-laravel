@@ -12,7 +12,7 @@
                         <div class="box">
                             <div class="box-header with-border d-flex justify-content-between">
                                 <h3 class="box-title">Fee Category List</h3>
-                                <a href="{{ route('shift.create') }}" class="btn btn-success btn-rounded">Add Fee Category</a>
+                                <a href="{{ route('category.create') }}" class="btn btn-success btn-rounded">Add Fee Category</a>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
@@ -37,7 +37,7 @@
                                                             onclick="deleteStudentcategory({{ $category->id }})"
                                                             class="btn btn-danger btn-rounded">Delete</a>
                                                         <form id="delete-{{ $category->id }}"
-                                                            action="{{ route('category.destroy', $shift->id) }}"
+                                                            action="{{ route('category.destroy', $category->id) }}"
                                                             method="POST" style="display: none;">
                                                             @csrf
                                                             @method('DELETE')
