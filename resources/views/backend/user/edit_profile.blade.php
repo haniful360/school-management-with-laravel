@@ -53,9 +53,7 @@
                                                         <h5>User Mobile<span class="text-danger">*</span></h5>
                                                         <div class="controls">
                                                             <input type="number" name="mobile" id="mobile"
-                                                                value="{{ $editData->mobile }}" class="form-control"
-                                                                required
-                                                                data-validation-required-message="This field is required">
+                                                                value="{{ $editData->mobile }}" class="form-control">
                                                         </div>
 
                                                     </div>
@@ -66,9 +64,7 @@
                                                             <h5>User Address <span class="text-danger">*</span></h5>
                                                             <div class="controls">
                                                                 <input type="text" name="address" id="address"
-                                                                    value="{{ $editData->address }}" class="form-control"
-                                                                    required
-                                                                    data-validation-required-message="This field is required">
+                                                                    value="{{ $editData->address }}" class="form-control">
                                                             </div>
                                                         </div>
 
@@ -79,9 +75,9 @@
                                                 <div class="col-md-6">
                                                     <div class="col-12">
                                                         <div class="form-group">
-                                                            <h5>User Role <span class="text-danger">*</span></h5>
+                                                            <h5>User Gender <span class="text-danger">*</span></h5>
                                                             <div class="controls">
-                                                                <select name="gender" id="gender" required
+                                                                <select name="gender" id="gender"
                                                                     class="form-control">
                                                                     <option value="">Select Your Role</option>
                                                                     <option value="Male"
@@ -106,7 +102,8 @@
                                                         </div>
                                                         <div>
                                                             <img id="profile_image" alt="your image" width="100"
-                                                                height="100" src="{{ !empty(Auth::user()->image) ? Storage::url(Auth::user()->image) : url('upload/no_image.jpg') }}"
+                                                                height="100"
+                                                                src="{{ !empty(Auth::user()->image) ? Storage::url(Auth::user()->image) : url('upload/no_image.jpg') }}"
                                                                 style="width: 100px;height: 100px;border: 1px solid #000000"
                                                                 alt="User Avatar">
                                                         </div>
