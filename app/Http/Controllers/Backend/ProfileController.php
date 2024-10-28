@@ -82,7 +82,7 @@ class ProfileController extends Controller
         $hasPassword = Auth::user()->password;
         if (Hash::check($request->old_password, $hasPassword)) {
             $user = User::find(Auth::id());
-          
+
             $user->password = Hash::make($request->password);
             $user->save();
             Auth::logout();
@@ -92,11 +92,5 @@ class ProfileController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+    
 }
