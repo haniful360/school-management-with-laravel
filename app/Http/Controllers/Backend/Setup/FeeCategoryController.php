@@ -36,7 +36,7 @@ class FeeCategoryController extends Controller
         $data->save();
 
         $notification = array(
-            'message' => 'Student Category Insert Successfully',
+            'message' => 'Category Fee Insert Successfully',
             'alert-type' => 'success'
         );
 
@@ -49,7 +49,8 @@ class FeeCategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $editCategoryFee = FeeCategory::findOrFail($id);
+        return view('backend.setup.fee_category.edit_category', compact('editCategoryFee'));
     }
 
     /**
@@ -57,7 +58,17 @@ class FeeCategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = FeeCategory::findOrFail($id);
+
+        $data->name = $request->input('name');
+        $data->save();
+
+        $notification = array(
+            'message' => 'Category Fee Updated Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->route('category.index')->with($notification);
     }
 
     /**
@@ -65,6 +76,14 @@ class FeeCategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = FeeCategory::findOrFail($id);
+        $data->delete();
+
+        $notification = array(
+            'message' => 'Category Fee Deleted Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->route('category.index')->with($notification);
     }
 }

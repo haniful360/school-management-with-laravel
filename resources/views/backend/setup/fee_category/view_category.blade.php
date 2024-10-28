@@ -31,10 +31,10 @@
                                                     <td>{{ $key + 1 }}</td>
                                                     <td>{{ $category->name }}</td>
                                                     <td>
-                                                        <a href="{{ route('shift.edit', $category->id) }}"
+                                                        <a href="{{ route('category.edit', $category->id) }}"
                                                             class="btn btn-info btn-rounded">Edit</a>
                                                         <a href="javascript:void(0)"
-                                                            onclick="deleteStudentcategory({{ $category->id }})"
+                                                            onclick="deleteCategoryFee({{ $category->id }})"
                                                             class="btn btn-danger btn-rounded">Delete</a>
                                                         <form id="delete-{{ $category->id }}"
                                                             action="{{ route('category.destroy', $category->id) }}"
@@ -65,7 +65,7 @@
     </div>
 
     <script type="text/javascript">
-        function deleteStudentShift(id) {
+        function deleteCategoryFee(id) {
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
