@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\Backend\Setup\FeeAmountController;
 use App\Http\Controllers\Backend\Setup\FeeCategoryController;
 use App\Http\Controllers\Backend\Setup\StudentClassController;
 use App\Http\Controllers\Backend\Setup\StudentGroupController;
@@ -61,4 +62,5 @@ Route::prefix('setups')->group(function () {
     Route::resource('group', StudentGroupController::class)->except('show');
     Route::resource('shift', StudentShiptController::class)->except('show');
     Route::resource('fee/category', FeeCategoryController::class)->except('show');
+    Route::resource('fee/category/amount', FeeAmountController::class)->except('show');
 });
