@@ -30,15 +30,16 @@
                                             @foreach ($allFeeCategoryAmount as $key => $amount)
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
-                                                    <td>{{ $amount->name }}</td>
+                                                    <td>{{ $amount['fee_category']['name']}}</td>
+                                                    {{-- <td>{{ $amount->fee_category->name}}</td> --}}
                                                     <td>
-                                                        <a href="{{ route('category.edit', $amount->id) }}"
+                                                        <a href=""
                                                             class="btn btn-info btn-rounded">Edit</a>
                                                         <a href="javascript:void(0)"
                                                             onclick="deleteAmountFee({{ $amount->id }})"
                                                             class="btn btn-danger btn-rounded">Delete</a>
                                                         <form id="delete-{{ $amount->id }}"
-                                                            action="{{ route('amount.destroy', $amount->id) }}"
+                                                            action=""
                                                             method="POST" style="display: none;">
                                                             @csrf
                                                             @method('DELETE')

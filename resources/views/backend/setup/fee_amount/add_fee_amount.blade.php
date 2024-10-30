@@ -16,18 +16,17 @@
                         <div class="row">
                             <div class="col">
 
-                                <form method="post" action="">
+                                <form method="post" action="{{ route('amount.store') }}">
                                     @csrf
+                                    @method('POST')
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="add_item">
 
-
-
                                                 <div class="form-group">
                                                     <h5>Fee Category<span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <select name="fee_category_id" required="" class="form-control">
+                                                        <select name="fee_category_id"  class="form-control">
                                                             <option value="" selected="" disabled="">Select Fee
                                                                 Category</option>
                                                             @foreach ($feeCategories as $category)
@@ -50,7 +49,7 @@
                                                                 <select name="class_id[]" required=""
                                                                     class="form-control">
                                                                     <option value="" selected="" disabled="">
-                                                                        Select Fee Category</option>
+                                                                        Select Class</option>
                                                                     @foreach ($classes as $class)
                                                                         <option value="{{ $class->id }}">
                                                                             {{ $class->name }}</option>

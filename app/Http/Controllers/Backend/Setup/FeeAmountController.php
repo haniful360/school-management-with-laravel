@@ -15,7 +15,8 @@ class FeeAmountController extends Controller
      */
     public function index()
     {
-        $data['allFeeCategoryAmount'] = FeeCategoryAmount::all();
+        $data['allFeeCategoryAmount'] = FeeCategoryAmount::select('fee_category_id')->groupBy('fee_category_id')->get();
+        // $data['allFeeCategoryAmount'] = FeeCategory::with('fee_category_amount')->get();
         return view('backend.setup.fee_amount.view_fee_amount', $data);
     }
 
@@ -34,11 +35,29 @@ class FeeAmountController extends Controller
      */
     public function store(Request $request)
     {
-        $data = new FeeCategoryAmount();
-        $data->fee_category_id = $request->fee_category_id;
-        $data->class_id = $request->class_id;
-        $data->amount = $request->amount;
-        $data->save();
+        $feeCategoryId = $request->input('fee_category_id');
+        $classIds = $request->input('class_id');
+        $amounts = $request->input('amount');
+
+        foreach ($classIds as $index => $class_id) {
+            $amount = $amounts[$index];
+
+            // Create a new FeeCategoryAmount instance and set the properties
+            $fee_amount = new FeeCategoryAmount();
+            $fee_amount->fee_category_id = $feeCategoryId;
+            $fee_amount->class_id = $class_id;
+            $fee_amount->amount = $amount; // Set the amount for each entry
+
+            // Save the record
+            $fee_amount->save();
+        }
+
+        $notification = array(
+            'message' => 'Fee Student Amount Insert Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('amount.index')->with($notification);
     }
 
 
