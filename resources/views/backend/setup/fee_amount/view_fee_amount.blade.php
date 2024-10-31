@@ -28,12 +28,15 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($allFeeCategoryAmount as $key => $amount)
+                                            @php
+                                                echo $amount->fee_category_id;
+                                            @endphp
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
                                                     <td>{{ $amount['fee_category']['name']}}</td>
                                                     {{-- <td>{{ $amount->fee_category->name}}</td> --}}
                                                     <td>
-                                                        <a href=""
+                                                        <a href="{{route('amount.edit', $amount->fee_category_id)}}"
                                                             class="btn btn-info btn-rounded">Edit</a>
                                                         <a href="javascript:void(0)"
                                                             onclick="deleteAmountFee({{ $amount->id }})"

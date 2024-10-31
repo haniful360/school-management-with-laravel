@@ -64,9 +64,16 @@ class FeeAmountController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $fee_category_id)
     {
-        //
+        $data['editData'] = FeeCategoryAmount::where('fee_category_id', $fee_category_id)
+            ->orderBy('class_id', 'asc')
+            ->get();
+        // return $data;
+        // dd($data['editData']);
+        $data['feeCategories'] = FeeCategory::all();
+        $data['classes'] = StudentClass::all();
+        return view('backend.setup.fee_amount.edit_fee_amount', $data);
     }
 
     /**
