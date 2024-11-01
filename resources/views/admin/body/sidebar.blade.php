@@ -71,6 +71,7 @@
                     <li><a href="{{ route('shift.index') }}"><i class="ti-more"></i>Student Shift</a></li>
                     <li><a href="{{ route('category.index') }}"><i class="ti-more"></i>Fee Category</a></li>
                     <li><a href="{{ route('amount.index') }}"><i class="ti-more"></i>Fee Category Amount</a></li>
+                    <li><a href="{{ route('type.index') }}"><i class="ti-more"></i>Exam Type</a></li>
 
                 </ul>
             </li>
