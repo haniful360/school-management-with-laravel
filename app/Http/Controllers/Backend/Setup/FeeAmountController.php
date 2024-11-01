@@ -61,6 +61,13 @@ class FeeAmountController extends Controller
     }
 
 
+    public function show(string $fee_category_id)
+    {
+        // return 'abc';
+        $data['detailsData'] = FeeCategoryAmount::where('fee_category_id', $fee_category_id)->with(['student_class', 'fee_category'])->orderBy('class_id', 'asc')->get();
+        return view('backend.setup.fee_amount.show_fee_amount', $data);
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -79,16 +86,40 @@ class FeeAmountController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $fee_category_id)
     {
-        //
-    }
+        $classIds = $request->input('class_id');
+        $amounts = $request->input('amount');
+        if ($request->class_id == NULL) {
+            $notification = array(
+                'message' => 'Sorry you do not any class amount',
+                'alert-type' => 'error'
+            );
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+            return redirect()->route('amount.index')->with($notification);
+        } else {
+            foreach ($classIds as $index => $class_id) {
+                $amount = $amounts[$index];
+
+                // Update if exists, or create a new record
+                FeeCategoryAmount::updateOrCreate(
+                    [
+                        'fee_category_id' => $fee_category_id,
+                        'class_id' => $class_id,
+                    ],
+                    [
+                        'amount' => $amount
+                    ]
+                );
+            }
+
+            // Redirect with a success notification
+            $notification = array(
+                'message' => 'Fee Category Amount updated successfully',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->route('amount.index')->with($notification);
+        }
     }
 }

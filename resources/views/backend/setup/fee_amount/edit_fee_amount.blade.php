@@ -16,9 +16,9 @@
                         <div class="row">
                             <div class="col">
 
-                                <form method="post" action="{{ route('amount.store') }}">
+                                <form method="post" action="{{ route('amount.update', $editData[0]->fee_category_id) }}">
                                     @csrf
-                                    @method('POST')
+                                    @method('PUT')
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="add_item">
