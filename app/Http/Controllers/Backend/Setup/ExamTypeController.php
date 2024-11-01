@@ -36,7 +36,7 @@ class ExamTypeController extends Controller
         $data->save();
 
         $notification = array(
-            'message' => 'Exam Type Updated Successfully',
+            'message' => 'Exam Type Inserted Successfully',
             'alert-type' => 'success'
         );
 
@@ -56,15 +56,25 @@ class ExamTypeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $editExamType = ExamType::findOrFail($id);
+        return view('backend.setup.exam_type.edit_exam_type', compact('editExamType'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ExamTypeReq $request, string $id)
     {
-        //
+        $data = ExamType::findOrFail($id);
+        $data->name = $request->name;
+        $data->save();
+
+        $notification = array(
+            'message' => 'Exam Type Updated Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->route('type.index')->with($notification);
     }
 
     /**
