@@ -82,6 +82,14 @@ class ExamTypeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = ExamType::findOrFail($id);
+        $data->delete();
+
+        $notification = array(
+            'message' => 'Exam Type Deleted Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->route('type.index')->with($notification);
     }
 }
