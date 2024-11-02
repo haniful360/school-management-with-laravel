@@ -35,7 +35,6 @@
                                                                     {{ $category->name }}
                                                                 </option>
                                                             @endforeach
-
                                                         </select>
                                                     </div>
                                                 </div> <!-- // end form group -->

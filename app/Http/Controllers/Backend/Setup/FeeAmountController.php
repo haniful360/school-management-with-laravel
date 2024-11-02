@@ -90,38 +90,43 @@ class FeeAmountController extends Controller
      */
     public function update(Request $request, string $fee_category_id)
     {
-        $classIds = $request->input('class_id');
-        $amounts = $request->input('amount');
-        if ($request->class_id == NULL) {
-            $notification = array(
-                'message' => 'Sorry you do not any class amount',
+        if ($request->class_id == null) {
+            return redirect()->route('amount.index')->with([
+                'message' => 'Sorry, you do not have any class amount',
                 'alert-type' => 'error'
-            );
-
-            return redirect()->route('amount.index')->with($notification);
-        } else {
-            foreach ($classIds as $index => $class_id) {
-                $amount = $amounts[$index];
-
-                // Update if exists, or create a new record
-                FeeCategoryAmount::updateOrCreate(
-                    [
-                        'fee_category_id' => $fee_category_id,
-                        'class_id' => $class_id,
-                    ],
-                    [
-                        'amount' => $amount
-                    ]
-                );
-            }
-
-            // Redirect with a success notification
-            $notification = array(
-                'message' => 'Fee Category Amount updated successfully',
-                'alert-type' => 'success'
-            );
-
-            return redirect()->route('amount.index')->with($notification);
+            ]);
         }
+
+        // Get all existing fee category amounts for the specified fee category
+        $existingAmounts = FeeCategoryAmount::where('fee_category_id', $fee_category_id)->get()->keyBy('class_id');
+        // Loop through each class and amount from the request
+        foreach ($request->class_id as $index => $classId) {
+            $amount = $request->amount[$index];
+
+            // Check if the record exists for this class_id, update or create accordingly
+            FeeCategoryAmount::updateOrCreate(
+                [
+                    'fee_category_id' => $fee_category_id,
+                    'class_id' => $classId,
+                ],
+                [
+                    'amount' => $amount,
+                ]
+            );
+
+            // Remove the class from the existing amounts so that we can delete any left over
+            $existingAmounts->forget($classId);
+        }
+
+        // Delete any amounts that were not in the request (not updated)
+        FeeCategoryAmount::whereIn('class_id', $existingAmounts->keys())
+            ->where('fee_category_id', $fee_category_id)
+            ->delete();
+
+        // Redirect with a success notification
+        return redirect()->route('amount.index')->with([
+            'message' => 'Fee Category Amount updated successfully',
+            'alert-type' => 'info'
+        ]);
     }
 }
