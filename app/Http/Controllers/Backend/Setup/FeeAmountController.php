@@ -60,7 +60,9 @@ class FeeAmountController extends Controller
         return redirect()->route('amount.index')->with($notification);
     }
 
-
+    /**
+     * Display the specified resource.
+     */
     public function show(string $fee_category_id)
     {
         // return 'abc';
