@@ -73,6 +73,7 @@
                     <li><a href="{{ route('amount.index') }}"><i class="ti-more"></i>Fee Category Amount</a></li>
                     <li><a href="{{ route('type.index') }}"><i class="ti-more"></i>Exam Type</a></li>
                     <li><a href="{{ route('subject.index') }}"><i class="ti-more"></i>School Subjects</a></li>
+                    <li><a href="{{ route('assign-subject.index') }}"><i class="ti-more"></i>Student Assign</a></li>
 
                 </ul>
             </li>
