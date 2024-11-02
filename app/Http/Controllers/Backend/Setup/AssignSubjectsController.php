@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backend\Setup;
 
 use App\Http\Controllers\Controller;
 use App\Models\AssignSubject;
+use App\Models\SchoolSubject;
+use App\Models\StudentClass;
 use Illuminate\Http\Request;
 
 class AssignSubjectsController extends Controller
@@ -14,6 +16,7 @@ class AssignSubjectsController extends Controller
     public function index()
     {
         $data['studentAssignSub'] = AssignSubject::all();
+
         return view('backend.setup.assign_subjects.view_assign_sub', $data);
     }
 
@@ -22,7 +25,9 @@ class AssignSubjectsController extends Controller
      */
     public function create()
     {
-        //
+        $data['subjects'] = SchoolSubject::all();
+        $data['classes'] = StudentClass::all();
+        return view('backend.setup.assign_subjects.add_assign_subject', $data);
     }
 
     /**
