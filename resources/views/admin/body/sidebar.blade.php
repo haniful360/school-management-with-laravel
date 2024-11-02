@@ -70,6 +70,9 @@
                     <li><a href="{{ route('group.index') }}"><i class="ti-more"></i>Student Group</a></li>
                     <li><a href="{{ route('shift.index') }}"><i class="ti-more"></i>Student Shift</a></li>
                     <li><a href="{{ route('category.index') }}"><i class="ti-more"></i>Fee Category</a></li>
+                    <li><a href="{{ route('amount.index') }}"><i class="ti-more"></i>Fee Category Amount</a></li>
+                    <li><a href="{{ route('type.index') }}"><i class="ti-more"></i>Exam Type</a></li>
+                    <li><a href="{{ route('subject.index') }}"><i class="ti-more"></i>School Subjects</a></li>
 
                 </ul>
             </li>
