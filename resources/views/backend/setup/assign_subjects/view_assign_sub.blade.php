@@ -12,7 +12,8 @@
                         <div class="box">
                             <div class="box-header with-border d-flex justify-content-between">
                                 <h3 class="box-title">Assign Subject List</h3>
-                                <a href="{{ route('assign-subject.create') }}" class="btn btn-success btn-rounded">Add Assign Subject</a>
+                                <a href="{{ route('assign-subject.create') }}" class="btn btn-success btn-rounded">Add Assign
+                                    Subject</a>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
@@ -21,24 +22,23 @@
                                         <thead>
                                             <tr>
                                                 <th width='5%'>SL</th>
-                                                <th>Name</th>
+                                                <th>Class Name</th>
                                                 <th width='25%'>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($studentAssignSub as $key => $assignSub)
+                                            @foreach ($studentAssignSub as $key => $assign)
                                                 {{-- @php
                                                     echo $amount->fee_category_id;
                                                 @endphp --}}
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
-                                                    <td>{{ $assignSub->class_id}}</td>
+                                                    <td>{{ $assign->student_class->name }}</td>
                                                     {{-- <td>{{ $amount->fee_category->name}}</td> --}}
                                                     <td>
-                                                        <a href="{{ route('assign-subject.edit', $amount->fee_category_id) }}"
+                                                        <a href="{{ route('assign-subject.edit', $assign->class_id) }}"
                                                             class="btn btn-info btn-rounded">Edit</a>
-                                                        <a href="{{ route('assign-subject.show', $amount->fee_category_id) }}"
-                                                            class="btn btn-primary btn-rounded">Details</a>
+                                                        <a href="" class="btn btn-primary btn-rounded">Details</a>
                                                     </td>
 
                                                 </tr>

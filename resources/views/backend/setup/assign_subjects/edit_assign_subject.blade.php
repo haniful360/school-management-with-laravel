@@ -9,16 +9,16 @@
                 <!-- Basic Forms -->
                 <div class="box">
                     <div class="box-header with-border">
-                        <h4 class="box-title">Add Assign Subject</h4>
+                        <h4 class="box-title">Update Assign Subject</h4>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div class="row">
                             <div class="col">
 
-                                <form method="post" action="{{ route('assign-subject.store') }}">
+                                <form method="post" action="{{ route('assign-subject.update', $editData[0]->class_id) }}">
                                     @csrf
-                                    @method('POST')
+                                    @method('PUT')
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="add_item">
@@ -27,9 +27,12 @@
                                                     <h5>Student Class<span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <select name="class_id" class="form-control">
-                                                            <option value="" selected="" disabled="">Select Student Class</option>
+                                                            <option value="" selected="" disabled="">Select
+                                                                Student Class</option>
                                                             @foreach ($classes as $class)
-                                                                <option value="{{ $class->id }}">{{ $class->name }}
+                                                                <option value="{{ $class->id }}"
+                                                                    {{ $editData[0]->class_id === $class->id ? 'selected' : '' }}>
+                                                                    {{ $class->name }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -98,7 +101,7 @@
                                             </div> <!-- // End add_item -->
 
                                             <div class="text-xs-right">
-                                                <input type="submit" class="btn btn-rounded btn-info mb-5" value="Submit">
+                                                <input type="submit" class="btn btn-rounded btn-info mb-5" value="Update">
                                             </div>
                                 </form>
 
