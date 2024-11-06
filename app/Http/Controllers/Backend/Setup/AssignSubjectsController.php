@@ -89,10 +89,35 @@ class AssignSubjectsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $class_id)
     {
-        //
+        
+
+        // Proceed with the rest of your code
+        AssignSubject::where('class_id', $class_id)->delete();
+
+        foreach ($request->subject_id as $index => $subject_id) {
+            $assign_subject = new AssignSubject();
+            $assign_subject->class_id = $class_id;
+            $assign_subject->subject_id = $subject_id;
+            $assign_subject->full_mark = $request->full_mark[$index];
+            $assign_subject->pass_mark = $request->pass_mark[$index];
+            $assign_subject->subjective_mark = $request->subjective_mark[$index];
+            $assign_subject->save();
+        }
+
+        $notification = [
+            'message' => 'Assigned subjects updated successfully.',
+            'alert-type' => 'success'
+        ];
+
+        return redirect()->route('assign-subject.index')->with($notification);
     }
+
+
 
     /**
      * Remove the specified resource from storage.

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\Setup\AssignSubjectsController;
+use App\Http\Controllers\Backend\Setup\DesignationController;
 use App\Http\Controllers\Backend\Setup\ExamTypeController;
 use App\Http\Controllers\Backend\Setup\FeeAmountController;
 use App\Http\Controllers\Backend\Setup\FeeCategoryController;
@@ -70,5 +71,6 @@ Route::prefix('setups')->group(function () {
     Route::resource('exam/type', ExamTypeController::class)->except('show');
     Route::resource('school/subject', SchoolSubjectController::class)->except('show');
     Route::resource('assign-subject', AssignSubjectsController::class)->except('destroy');
+    Route::resource('designation', DesignationController::class)->except('show');
 });
 

@@ -41,62 +41,79 @@
 
 
 
-                                                <div class="row">
+                                                @foreach ($editData as $edit)
+                                                    <div class="whole_extra_item_add" id="whole_extra_item_add">
+                                                        <div class="delete_whole_extra_item_add"
+                                                            id="delete_whole_extra_item_add">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
 
-                                                    <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <h5>Student Subject <span
+                                                                                class="text-danger">*</span></h5>
+                                                                        <div class="controls">
+                                                                            <select name="subject_id[]" required=""
+                                                                                class="form-control">
+                                                                                <option value="" selected=""
+                                                                                    disabled="">
+                                                                                    Select subject</option>
+                                                                                @foreach ($subjects as $subject)
+                                                                                    <option value="{{ $subject->id }}"
+                                                                                        {{ $edit->subject_id == $subject->id ? 'selected' : '' }}>
+                                                                                        {{ $subject->name }}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+                                                                    </div> <!-- // end form group -->
 
-                                                        <div class="form-group">
-                                                            <h5>Student Subject <span class="text-danger">*</span></h5>
-                                                            <div class="controls">
-                                                                <select name="subject_id[]" required=""
-                                                                    class="form-control">
-                                                                    <option value="" selected="" disabled="">
-                                                                        Select subject</option>
-                                                                    @foreach ($subjects as $subject)
-                                                                        <option value="{{ $subject->id }}">
-                                                                            {{ $subject->name }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                        </div> <!-- // end form group -->
 
+                                                                </div> <!-- End col-md-5 -->
 
-                                                    </div> <!-- End col-md-5 -->
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        <h5>Full Mark <span class="text-danger">*</span>
+                                                                        </h5>
+                                                                        <div class="controls">
+                                                                            <input type="text" name="full_mark[]"
+                                                                                value="{{ $edit->full_mark }}"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        <h5>Pass Mark <span class="text-danger">*</span>
+                                                                        </h5>
+                                                                        <div class="controls">
+                                                                            <input type="text" name="pass_mark[]"
+                                                                                value="{{ $edit->pass_mark }}
+                                                                        class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        <h5>Subjective Mark <span
+                                                                                class="text-danger">*</span></h5>
+                                                                        <div class="controls">
+                                                                            <input type="text" name="subjective_mark[]"
+                                                                                value="{{ $edit->subjective_mark }}
+                                                                        class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
 
-                                                    <div class="col-md-2">
-                                                        <div class="form-group">
-                                                            <h5>Full Mark <span class="text-danger">*</span></h5>
-                                                            <div class="controls">
-                                                                <input type="text" name="full_mark[]"
-                                                                    class="form-control">
-                                                            </div>
+                                                                <div class="col-md-2" style="padding-top: 25px;">
+                                                                    <span class="btn btn-success addeventmore"><i
+                                                                            class="fa fa-plus-circle"></i> </span>
+                                                                    <span class="btn btn-danger removeeventmore"><i
+                                                                            class="fa fa-minus-circle"></i> </span>
+                                                                </div><!-- End col-md-5 -->
+
+                                                            </div> <!-- end Row -->
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-2">
-                                                        <div class="form-group">
-                                                            <h5>Pass Mark <span class="text-danger">*</span></h5>
-                                                            <div class="controls">
-                                                                <input type="text" name="pass_mark[]"
-                                                                    class="form-control">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div class="form-group">
-                                                            <h5>Subjective Mark <span class="text-danger">*</span></h5>
-                                                            <div class="controls">
-                                                                <input type="text" name="subjective_mark[]"
-                                                                    class="form-control">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-2" style="padding-top: 25px;">
-                                                        <span class="btn btn-success addeventmore"><i
-                                                                class="fa fa-plus-circle"></i> </span>
-                                                    </div><!-- End col-md-5 -->
-
-                                                </div> <!-- end Row -->
+                                                @endforeach
 
                                             </div> <!-- // End add_item -->
 

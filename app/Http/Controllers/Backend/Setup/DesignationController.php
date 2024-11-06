@@ -3,19 +3,18 @@
 namespace App\Http\Controllers\Backend\Setup;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ExamTypeReq;
-use App\Models\ExamType;
+use App\Models\Designation;
 use Illuminate\Http\Request;
 
-class ExamTypeController extends Controller
+class DesignationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data['examTypeData'] = ExamType::all();
-        return view('backend.setup.exam_type.view_exam_type', $data);
+        $data['designationsData'] = Designation::all();
+        return view('backend.setup.designation.view_designation', $data);
     }
 
     /**
@@ -23,51 +22,51 @@ class ExamTypeController extends Controller
      */
     public function create()
     {
-        return view('backend.setup.exam_type.add_exam_type');
+        return view('backend.setup.designation.add_designation');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ExamTypeReq $request)
+    public function store(Request $request)
     {
-        $data = new ExamType();
+        $data = new Designation();
         $data->name = $request->name;
         $data->save();
 
         $notification = array(
-            'message' => 'Exam Type Inserted Successfully',
+            'message' => 'Designation Inserted Successfully',
             'alert-type' => 'success'
         );
 
-        return redirect()->route('type.index')->with($notification);
+        return redirect()->route('designation.index')->with($notification);
     }
 
-    
+
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        $editExamType = ExamType::findOrFail($id);
-        return view('backend.setup.exam_type.edit_exam_type', compact('editExamType'));
+        $editDesignation = Designation::findOrFail($id);
+        return view('backend.setup.designation.edit_designation', compact('editDesignation'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(ExamTypeReq $request, string $id)
+    public function update(Request $request, string $id)
     {
-        $data = ExamType::findOrFail($id);
+        $data = Designation::findOrFail($id);
         $data->name = $request->name;
         $data->save();
 
         $notification = array(
-            'message' => 'Exam Type Updated Successfully',
+            'message' => 'Designation Updated Successfully',
             'alert-type' => 'info'
         );
 
-        return redirect()->route('type.index')->with($notification);
+        return redirect()->route('designation.index')->with($notification);
     }
 
     /**
@@ -75,14 +74,14 @@ class ExamTypeController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = ExamType::findOrFail($id);
+        $data = Designation::findOrFail($id);
         $data->delete();
 
         $notification = array(
-            'message' => 'Exam Type Deleted Successfully',
+            'message' => 'Designation Deleted Successfully',
             'alert-type' => 'info'
         );
 
-        return redirect()->route('type.index')->with($notification);
+        return redirect()->route('designation.index')->with($notification);
     }
 }
