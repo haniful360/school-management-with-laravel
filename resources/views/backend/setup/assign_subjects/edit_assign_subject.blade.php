@@ -86,8 +86,8 @@
                                                                         </h5>
                                                                         <div class="controls">
                                                                             <input type="text" name="pass_mark[]"
-                                                                                value="{{ $edit->pass_mark }}
-                                                                        class="form-control">
+                                                                                value="{{ $edit->pass_mark }}"
+                                                                                class="form-control">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -97,8 +97,8 @@
                                                                                 class="text-danger">*</span></h5>
                                                                         <div class="controls">
                                                                             <input type="text" name="subjective_mark[]"
-                                                                                value="{{ $edit->subjective_mark }}
-                                                                        class="form-control">
+                                                                                value="{{ $edit->subjective_mark }}"
+                                                                                class="form-control">
                                                                         </div>
                                                                     </div>
                                                                 </div>

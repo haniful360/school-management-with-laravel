@@ -72,11 +72,12 @@ class AssignSubjectsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $class_id) {
+    public function show(string $class_id)
+    {
 
-        $data['detailsData'] = AssignSubject::where('class_id', $class_id)->with(['school_subject','student_class'])->orderBy('subject_id', 'asc')->get();
+        $data['detailsData'] = AssignSubject::where('class_id', $class_id)->with(['school_subject', 'student_class'])->orderBy('subject_id', 'asc')->get();
         // return $data;
-        return view('backend.setup.assign_subjects.show_assign_subject',$data);
+        return view('backend.setup.assign_subjects.show_assign_subject', $data);
     }
 
     /**
@@ -91,44 +92,41 @@ class AssignSubjectsController extends Controller
         return view('backend.setup.assign_subjects.edit_assign_subject', $data);
     }
 
+
     /**
      * Update the specified resource in storage.
      */
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $class_id)
+    public function update(Request $request, $class_id)
     {
+        if ($request->subject_id == null) {
+            // No subjects selected, return error notification
+            $notification = [
+                'message' => 'Sorry, you did not select any subject',
+                'alert-type' => 'error'
+            ];
+            return redirect()->route('assign.subject.edit', $class_id)->with($notification);
+        } else {
+            // Delete existing records for this class to avoid duplicates
+            AssignSubject::where('class_id', $class_id)->delete();
 
+            // Loop through each selected subject to create new records
+            foreach ($request->subject_id as $index => $subject_id) {
+                AssignSubject::create([
+                    'class_id' => $request->class_id,
+                    'subject_id' => $subject_id,
+                    'full_mark' => $request->full_mark[$index],
+                    'pass_mark' => $request->pass_mark[$index],
+                    'subjective_mark' => $request->subjective_mark[$index],
+                ]);
+            }
+        }
 
-        // Proceed with the rest of your code
-        // AssignSubject::where('class_id', $class_id)->delete();
+        // Success notification
+        $notification = [
+            'message' => 'Data updated successfully',
+            'alert-type' => 'success'
+        ];
 
-        // foreach ($request->subject_id as $index => $subject_id) {
-        //     $assign_subject = new AssignSubject();
-        //     $assign_subject->class_id = $class_id;
-        //     $assign_subject->subject_id = $subject_id;
-        //     $assign_subject->full_mark = $request->full_mark[$index];
-        //     $assign_subject->pass_mark = $request->pass_mark[$index];
-        //     $assign_subject->subjective_mark = $request->subjective_mark[$index];
-        //     $assign_subject->save();
-        // }
-
-        // $notification = [
-        //     'message' => 'Assigned subjects updated successfully.',
-        //     'alert-type' => 'success'
-        // ];
-
-        // return redirect()->route('assign-subject.index')->with($notification);
-    }
-
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('assign-subject.index')->with($notification);
     }
 }
