@@ -26,8 +26,9 @@
                                                 <div class="form-group">
                                                     <h5>Student Class<span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <select name="class_id" class="form-control">
-                                                            <option value="" selected="" disabled="">Select Student Class</option>
+                                                        <select name="class_id" class="form-control" required>
+                                                            <option value="" selected="" disabled="">Select
+                                                                Student Class</option>
                                                             @foreach ($classes as $class)
                                                                 <option value="{{ $class->id }}">{{ $class->name }}
                                                                 </option>
@@ -35,6 +36,8 @@
                                                         </select>
                                                     </div>
                                                 </div> <!-- // end form group -->
+
+
 
 
 

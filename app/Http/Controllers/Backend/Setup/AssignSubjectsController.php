@@ -60,7 +60,7 @@ class AssignSubjectsController extends Controller
         }
 
         $notification = array(
-            'message' => 'Fee Student Amount Insert Successfully',
+            'message' => 'Assign Subject Insert Successfully',
             'alert-type' => 'success'
         );
 
@@ -72,7 +72,12 @@ class AssignSubjectsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id) {}
+    public function show(string $class_id) {
+
+        $data['detailsData'] = AssignSubject::where('class_id', $class_id)->with(['school_subject','student_class'])->orderBy('subject_id', 'asc')->get();
+        // return $data;
+        return view('backend.setup.assign_subjects.show_assign_subject',$data);
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -94,27 +99,27 @@ class AssignSubjectsController extends Controller
      */
     public function update(Request $request, string $class_id)
     {
-        
+
 
         // Proceed with the rest of your code
-        AssignSubject::where('class_id', $class_id)->delete();
+        // AssignSubject::where('class_id', $class_id)->delete();
 
-        foreach ($request->subject_id as $index => $subject_id) {
-            $assign_subject = new AssignSubject();
-            $assign_subject->class_id = $class_id;
-            $assign_subject->subject_id = $subject_id;
-            $assign_subject->full_mark = $request->full_mark[$index];
-            $assign_subject->pass_mark = $request->pass_mark[$index];
-            $assign_subject->subjective_mark = $request->subjective_mark[$index];
-            $assign_subject->save();
-        }
+        // foreach ($request->subject_id as $index => $subject_id) {
+        //     $assign_subject = new AssignSubject();
+        //     $assign_subject->class_id = $class_id;
+        //     $assign_subject->subject_id = $subject_id;
+        //     $assign_subject->full_mark = $request->full_mark[$index];
+        //     $assign_subject->pass_mark = $request->pass_mark[$index];
+        //     $assign_subject->subjective_mark = $request->subjective_mark[$index];
+        //     $assign_subject->save();
+        // }
 
-        $notification = [
-            'message' => 'Assigned subjects updated successfully.',
-            'alert-type' => 'success'
-        ];
+        // $notification = [
+        //     'message' => 'Assigned subjects updated successfully.',
+        //     'alert-type' => 'success'
+        // ];
 
-        return redirect()->route('assign-subject.index')->with($notification);
+        // return redirect()->route('assign-subject.index')->with($notification);
     }
 
 
