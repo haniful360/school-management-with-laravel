@@ -25,6 +25,7 @@
                                                 <th width='5%'>SL</th>
                                                 <th>Role</th>
                                                 <th>Name</th>
+                                                <th>Code</th>
                                                 <th>Email</th>
                                                 <th width='25%'>Action</th>
                                             </tr>
@@ -33,8 +34,9 @@
                                             @foreach ($allData as $key => $user)
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
-                                                    <td>{{ $user->usertype }}</td>
+                                                    <td>{{ $user->role }}</td>
                                                     <td>{{ $user->name }}</td>
+                                                    <td>{{ $user->code }}</td>
                                                     <td>{{ $user->email }}</td>
                                                     <td>
                                                         <a href="{{ route('users.edit', $user->id) }}"
