@@ -10,7 +10,7 @@
                             <div class="widget-user-header bg-black"
                                 style="background: url('/images/gallery/full/10.jpg') center center;">
                                <div>
-                                <a style="float: right;" href="{{ route('profiles.edit', $user->id) }}" class="btn btn-success ">Edit User</a>
+                                <a style="float: right;" href="{{ route('profile.edit', $user->id) }}" class="btn btn-success ">Edit User</a>
                                 <h3 class="widget-user-username">User Name: {{$user->name}}</h3>
                                 <h6 class="widget-user-desc">User type:{{$user->usertype}}</h6>
                                 <h6 class="widget-user-desc">User email:{{$user->email}}</h6>
@@ -18,7 +18,7 @@
 
                             </div>
                             <div class="widget-user-image">
-                                <img class="rounded-circle" src="{{!empty($user->image) ? url('upload/user_images/'.$user->image) : url('upload/no_image.jpg') }}" alt="User Avatar">
+                                <img class="rounded-circle" src="{{!empty($user->image) ? Storage::url($user->image) : url('upload/no_image.jpg') }}" alt="User Avatar">
                             </div>
                             <div class="box-footer">
                                 <div class="row">
