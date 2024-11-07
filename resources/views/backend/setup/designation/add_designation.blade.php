@@ -8,13 +8,13 @@
                 <!-- Basic Forms -->
                 <div class="box">
                     <div class="box-header with-border">
-                        <h4 class="box-title">Add School Subject</h4>
+                        <h4 class="box-title">Add Designation</h4>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div class="row">
                             <div class="col">
-                                <form method="post" action="{{ route('subject.store') }}">
+                                <form method="post" action="{{ route('designation.store') }}">
                                     @csrf
                                     @method('POST')
                                     <div class="row">
@@ -22,10 +22,10 @@
                                             <div class="row mx-5">
                                                 <div class="col-12">
                                                     <div class="form-group">
-                                                        <h5>Subject Name<span class="text-danger">*</span></h5>
+                                                        <h5>Designation<span class="text-danger">*</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="name" id="name"
-                                                                class="form-control"">
+                                                                class="form-control">
                                                             @error('name')
                                                                 <span class="text-danger">{{ $message }}</span>
                                                             @enderror
