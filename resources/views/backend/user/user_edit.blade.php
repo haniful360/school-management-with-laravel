@@ -26,8 +26,7 @@
                                                         <div class="form-group">
                                                             <h5>User Role <span class="text-danger">*</span></h5>
                                                             <div class="controls">
-                                                                <select name="usertype" id="usertype" required
-                                                                    class="form-control">
+                                                                <select name="usertype" id="usertype" class="form-control">
                                                                     <option value="">Select Your Role</option>
                                                                     <option value="Admin"
                                                                         {{ $editData->usertype == 'Admin' ? 'selected' : '' }}>
@@ -46,10 +45,11 @@
                                                         <h5>User Name <span class="text-danger">*</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="name" id="name"
-                                                                value="{{ $editData->name }}" class="form-control" required
-                                                                data-validation-required-message="This field is required">
+                                                                value="{{ $editData->name }}" class="form-control">
                                                         </div>
-
+                                                        @error('name')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                             </div>
@@ -60,9 +60,10 @@
                                                             <h5>User Email <span class="text-danger">*</span></h5>
                                                             <div class="controls">
                                                                 <input type="email" name="email" id="email"
-                                                                    value="{{ $editData->email }}" class="form-control"
-                                                                    required
-                                                                    data-validation-required-message="This field is required">
+                                                                    value="{{ $editData->email }}" class="form-control">
+                                                                @error('email')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
                                                             </div>
                                                         </div>
 
