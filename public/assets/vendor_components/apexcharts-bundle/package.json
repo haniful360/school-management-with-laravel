@@ -10,8 +10,8 @@
   "scripts": {
     "webpack": "cd apexcharts-github && webpack --watch",
     "gulp": "cd website && gulp watch",
-    "build": "cd apexcharts-github && webpack -p",
-    "start": "concurrently \"npm run webpack\" \"npm run gulp\" ",
+    "build": "node init && cd apexcharts-github && webpack -p",
+    "start": "node init && concurrently \"npm run webpack\" \"npm run gulp\" ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {

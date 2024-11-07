@@ -32,7 +32,7 @@
     "postpublish": "nuget-publish && ./bower-publish.sh",
     "prebuild": "npm run lint",
     "pretest": "npm run lint",
-    "build": "node bundle.js",
+    "build": "node init && node bundle.js",
     "lint": "eslint .",
     "test": "popper-karma",
     "test:dev": "BROWSERS=Chrome NODE_ENV=development npm run test",
