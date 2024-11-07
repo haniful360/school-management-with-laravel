@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\Setup\StudentClassController;
 use App\Http\Controllers\Backend\Setup\StudentGroupController;
 use App\Http\Controllers\Backend\Setup\StudentShiptController;
 use App\Http\Controllers\Backend\Setup\StudentYearController;
+use App\Http\Controllers\Backend\Student\StudentReqController;
 use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -74,3 +75,6 @@ Route::prefix('setups')->group(function () {
     Route::resource('designation', DesignationController::class)->except('show');
 });
 
+Route::prefix('students')->group(function () {
+    Route::resource('assign-student', StudentReqController::class)->except('show');
+});
