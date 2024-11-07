@@ -24,7 +24,7 @@ class UserController extends Controller
 
     public function storeUser(Request $request)
     {
-        $validateData = $request->validate([
+        $request->validate([
             'email' => 'required|unique:users',
             'name' => 'required',
         ]);
@@ -51,6 +51,11 @@ class UserController extends Controller
     }
     public function updateUser(Request $request, $id)
     {
+        $request->validate([
+            'email' => 'required|unique:users',
+            'name' => 'required',
+        ]);
+
         $data = User::findOrFail($id);
         $data->usertype = $request->usertype;
         $data->name = $request->name;
